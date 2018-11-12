@@ -3,11 +3,6 @@ import Vector from '../engine/Vector.js';
 import Path from './Path.js';
 import Train from './Train.js';
 
-// const path = new Path;
-// const this.train = new Train;
-// const tileTextures = new Image();
-// tileTextures.src = '../textures/rails-basic.png';
-
 export default class TileManager {
     constructor() {
         this.width = 30;
@@ -29,6 +24,7 @@ export default class TileManager {
         this.path = new Path;  
         this.tileTextures = new Image();
         this.tileTextures.src = './textures/rails-basic.png';  
+        console.log(tileTextures.src);
         this.gridOn = true;
     }
 
