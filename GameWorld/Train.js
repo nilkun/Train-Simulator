@@ -15,7 +15,7 @@ export default class Train {
         this.destination = [];
         this.direction = new Vector;
         this.sprite = new Image()
-        this.sprite.src = '../textures/train.png';
+        this.sprite.src = './textures/train.png';
     }
 
     init() {
