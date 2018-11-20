@@ -8,7 +8,7 @@ import Train from './Train.js';
 
 
 export default class TileManager {
-    constructor(path) {
+    constructor() {
         this.width = 30;
         this.height = 30;
         this.tile = new Array(this.width);
@@ -29,7 +29,7 @@ export default class TileManager {
         this.train = new Train(path);
         this.path = new Path;  
         this.tileTextures = new Image();
-        this.tileTextures.src = '../../textures/rails-basic.png'; 
+        this.tileTextures.src = './src/textures/rails-basic.png'; 
         this.gridOn = true;
     }
 
