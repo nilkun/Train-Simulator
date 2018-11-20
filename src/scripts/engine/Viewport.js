@@ -19,4 +19,9 @@ export default class Viewport {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.context.beginPath();
     }
+
+    getMouse(event) {
+        const rect = this.canvas.getBoundingClientRect();
+        return { x: event.clientX - rect.left, y: event.clientY - rect.top };
+    }
 }

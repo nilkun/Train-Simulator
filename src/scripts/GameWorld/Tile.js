@@ -1,16 +1,14 @@
 import Vector from '../engine/Vector.js';
 
 export default class Tile {
-    constructor() {
-        //this.position = new Vector();   
+    constructor() {  
         this.type = "";
         this.color = "green";
         this.hasTrack = false;
         this.neighbours = [];
         this.connections = [];
         this.railIndex = [];
-        this.heading = "";
-        // this.setColor();     
+        this.heading = "";    
     }
     connect() {
         this.color = "red";
@@ -22,13 +20,10 @@ export default class Tile {
         }
         if(child) {
             this.connections.push(new Vector(child.x, child.y));
-
             this.heading = new Vector(child.x, child.y);
         }
         this.hasTrack = true;
         this.setIndex(current)
-        // this.parentNode = null;
-        // this.childNode = null;
     }
     setIndex(current) {
         let index = 0;

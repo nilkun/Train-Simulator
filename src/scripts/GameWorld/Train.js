@@ -10,12 +10,12 @@ export default class Train {
         this.deceleration;
         
         this.target = new Vector;
-        this.maxForce;;
+        this.maxForce;
         this.cd = true;
         this.destination = [];
         this.direction = new Vector;
         this.sprite = new Image()
-        this.sprite.src = '../textures/train.png';
+        this.sprite.src = 'src/textures/train.png';
     }
 
     init() {

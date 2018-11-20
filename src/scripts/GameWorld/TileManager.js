@@ -1,3 +1,5 @@
+'use strict';
+
 import Tile from './Tile.js';
 import Vector from '../engine/Vector.js';
 import Path from './Path.js';
@@ -8,6 +10,9 @@ import Train from './Train.js';
 // const tileTextures = new Image();
 // tileTextures.src = '../textures/rails-basic.png';
 
+
+
+
 export default class TileManager {
     constructor() {
         this.width = 30;
@@ -16,8 +21,10 @@ export default class TileManager {
         this.tileSize = 16;  
         this.context = "";
         this.canvas = "";
-        this.start = new Vector(2, 2);
-        this.goal = new Vector(17, 19);
+        this.start = -1;
+        //new Vector(2, 2);
+        this.goal = -2;
+        //new Vector(17, 19);
         this.origin = false;
         this.isClicked = false;  
         this.hasTrain = false;
@@ -28,7 +35,7 @@ export default class TileManager {
         this.train = new Train;
         this.path = new Path;  
         this.tileTextures = new Image();
-        this.tileTextures.src = '../textures/rails-basic.png';  
+        this.tileTextures.src = 'src/textures/rails-basic.png';  
         this.gridOn = true;
     }
 
@@ -48,8 +55,9 @@ export default class TileManager {
         this.tileSize = 16;  
         this.context = "";
         this.canvas = "";
-        this.start = new Vector();
-        this.goal = new Vector(-1, -1);
+        this.start = -1;
+        //new Vector(2, 2);;
+        this.goal = -2; //new Vector(12, 12);;
         this.origin = false;
         this.isClicked = false;  
         this.hasTrain = false;
@@ -59,7 +67,6 @@ export default class TileManager {
         this.current = [];
         this.train = new Train;
         this.path = new Path; 
-        this.canvas = canvas;
         this.gridOn = true;
         for(let i = 0; i < this.width; i++) {
             this.tile[i] = new Array(this.height);
@@ -72,8 +79,6 @@ export default class TileManager {
     switchGrid() {
         if(this.gridOn) this.gridOn = false;
         else this.gridOn = true;
-        // this.gridOn = false;
-        console.log("Grid is", this.gridOn);
     }
 
     setRenderContext(ctx) {
@@ -92,14 +97,14 @@ export default class TileManager {
     }
     click(x, y) {
         if(!this.isCompleted) {
-            x = Math.floor((x - 10)/this.tileSize)
-            y = Math.floor((y - 10)/this.tileSize);
+            x = Math.floor(x/this.tileSize);
+            y = Math.floor(y/this.tileSize);
             if(!this.origin) {
                 this.origin = new Vector(x, y);
                 this.start = new Vector(this.origin.x, this.origin.y);
                 this.isClicked = true;
                 this.tile[this.origin.x][this.origin.y].color = "pink";
-                this.circuit.push(new Vector(x, y));     
+                this.circuit.push(new Vector(x, y));  
             }
             else if(this.isClicked) {
                 this.goal = new Vector(x, y);
@@ -112,13 +117,11 @@ export default class TileManager {
             else {
                 this.start = new Vector(this.goal.x, this.goal.y);
                 this.goal = new Vector(x, y);
-
                 this.getPath();
                 // pop the first or else they are the same
                 this.current.pop();
                 this.circuit = this.current.concat(this.circuit);
             }
-
             if(this.goal.x === this.origin.x && this.goal.y === this.origin.y) {
                 this.isCompleted = true;
                 this.train.destination = this.circuit.slice(0);
@@ -131,6 +134,7 @@ export default class TileManager {
     }
 
     startTrain() {
+        console.log("Starting train...");
         this.hasTrain = true;
         this.train.init();
 
@@ -160,8 +164,6 @@ export default class TileManager {
                 this.context.fillStyle = this.tile[x][y].color;
                 this.context.fill(); 
                 
-                // grid on or off
-                // console.log(this.gridOn);
                 if(this.gridOn) { this.context.stroke(); }
                 if(this.tile[x][y].hasTrack) {
                     this.context.drawImage(this.tileTextures, 
