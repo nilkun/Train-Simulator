@@ -1,3 +1,3 @@
-import TrainSimulator from './GameWorld/TrainSimulator.js';
+import TrainSimulator from '.src/scripts/GameWorld/TrainSimulator.js';
 
 const trainSimulator = new TrainSimulator;
