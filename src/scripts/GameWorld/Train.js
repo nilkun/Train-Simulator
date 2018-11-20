@@ -15,7 +15,8 @@ export default class Train {
         this.destination = [];
         this.direction = new Vector;
         this.sprite = new Image();
-        this.sprite.src = './src/textures/train.png';
+        // this.sprite.src = './src/textures/train.png';
+        this.sprite.src = 'Train-Simulator/src/textures/train.png';
         console.log("Train path: ", this.sprite.src);
     }
 
