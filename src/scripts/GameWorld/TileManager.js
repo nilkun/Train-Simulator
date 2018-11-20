@@ -29,7 +29,7 @@ export default class TileManager {
         this.train = new Train(path);
         this.path = new Path;  
         this.tileTextures = new Image();
-        this.tileTextures.src = path + '../../textures/rails-basic.png'; 
+        this.tileTextures.src = '../../textures/rails-basic.png'; 
         this.gridOn = true;
     }
 
