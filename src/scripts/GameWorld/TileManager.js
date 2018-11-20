@@ -26,7 +26,7 @@ export default class TileManager {
         this.changeDirection = false;
         this.circuit = [];
         this.current = [];
-        this.train = new Train(path);
+        this.train = new Train();
         this.path = new Path;  
         this.tileTextures = new Image();
         this.tileTextures.src = './src/textures/rails-basic.png'; 
@@ -59,7 +59,7 @@ export default class TileManager {
         this.changeDirection = false;
         this.circuit = [];
         this.current = [];
-        this.train = new Train(path);
+        this.train = new Train();
         this.path = new Path; 
         this.gridOn = true;
         for(let i = 0; i < this.width; i++) {
