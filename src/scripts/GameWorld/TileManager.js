@@ -5,6 +5,7 @@ import Vector from '../engine/Vector.js';
 import Path from './Path.js';
 import Train from './Train.js';
 
+<<<<<<< HEAD:src/scripts/GameWorld/TileManager.js
 // const path = new Path;
 // const this.train = new Train;
 // const tileTextures = new Image();
@@ -13,6 +14,8 @@ import Train from './Train.js';
 
 
 
+=======
+>>>>>>> 92e0e1104763e86f4824863707ec54386c67cfb9:GameWorld/TileManager.js
 export default class TileManager {
     constructor() {
         this.width = 30;
@@ -35,7 +38,11 @@ export default class TileManager {
         this.train = new Train;
         this.path = new Path;  
         this.tileTextures = new Image();
+<<<<<<< HEAD:src/scripts/GameWorld/TileManager.js
         this.tileTextures.src = 'src/textures/rails-basic.png';  
+=======
+        this.tileTextures.src = './textures/rails-basic.png'; 
+>>>>>>> 92e0e1104763e86f4824863707ec54386c67cfb9:GameWorld/TileManager.js
         this.gridOn = true;
     }
 

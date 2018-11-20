@@ -15,7 +15,11 @@ export default class Train {
         this.destination = [];
         this.direction = new Vector;
         this.sprite = new Image()
+<<<<<<< HEAD:src/scripts/GameWorld/Train.js
         this.sprite.src = 'src/textures/train.png';
+=======
+        this.sprite.src = './textures/train.png';
+>>>>>>> 92e0e1104763e86f4824863707ec54386c67cfb9:GameWorld/Train.js
     }
 
     init() {
