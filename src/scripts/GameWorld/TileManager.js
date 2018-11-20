@@ -5,8 +5,10 @@ import Vector from '../engine/Vector.js';
 import Path from './Path.js';
 import Train from './Train.js';
 
+
+
 export default class TileManager {
-    constructor() {
+    constructor(path) {
         this.width = 30;
         this.height = 30;
         this.tile = new Array(this.width);
@@ -24,10 +26,10 @@ export default class TileManager {
         this.changeDirection = false;
         this.circuit = [];
         this.current = [];
-        this.train = new Train;
+        this.train = new Train(path);
         this.path = new Path;  
         this.tileTextures = new Image();
-        this.tileTextures.src = 'src/textures/rails-basic.png'; 
+        this.tileTextures.src = path + '../../textures/rails-basic.png'; 
         this.gridOn = true;
     }
 
@@ -57,7 +59,7 @@ export default class TileManager {
         this.changeDirection = false;
         this.circuit = [];
         this.current = [];
-        this.train = new Train;
+        this.train = new Train(path);
         this.path = new Path; 
         this.gridOn = true;
         for(let i = 0; i < this.width; i++) {

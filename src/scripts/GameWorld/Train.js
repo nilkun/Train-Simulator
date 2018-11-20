@@ -1,7 +1,7 @@
 import Vector from '../engine/Vector.js'
 
 export default class Train {
-    constructor() {
+    constructor(path) {
         this.position = new Vector;
         this.velocity = new Vector;
         this.acceleration = new Vector;
@@ -14,8 +14,9 @@ export default class Train {
         this.cd = true;
         this.destination = [];
         this.direction = new Vector;
-        this.sprite = new Image()
-        this.sprite.src = './src/textures/train.png';
+        this.sprite = new Image();
+        console.log("Train path: ", path + '../../textures/train.png');
+        this.sprite.src = path + '../../textures/train.png';
     }
 
     init() {

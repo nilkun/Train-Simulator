@@ -3,23 +3,32 @@ import TileManager from './TileManager.js';
 
 export default class TrainSimulator {
     constructor() {
+        this.path = this.currentScriptPath();
         this.world;
         this.viewport;
         this.updateInterval;
         this.play;
         this.bindPlay = this.startGame.bind(this);
-        this.world = new TileManager();
+        this.world = new TileManager(this.path);
         this.viewport = new Viewport(480, 480);
         this.viewport.init();
         this.world.init(this.viewport.canvas);
         this.world.setRenderContext(this.viewport.context);
         this.world.render();
         this.updateInterval;
+    }
+    currentScriptPath() {
+        // get scripts
+        const scripts = document.querySelectorAll( 'script[src]' );
+        const currentScript = scripts[ scripts.length - 1 ].src;
 
+        const currentScriptChunks = currentScript.split( '/' );
+        const currentScriptFile = currentScriptChunks[ currentScriptChunks.length - 1 ];    
+        return currentScript.replace( currentScriptFile, '' );
     }
 
     init() {
-        this.world = new TileManager();
+        this.world = new TileManager(path);
         this.viewport = new Viewport(480, 480);
         this.viewport.init();
         this.world.init(this.viewport.canvas);
