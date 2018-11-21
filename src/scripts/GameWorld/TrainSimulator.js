@@ -10,7 +10,7 @@ export default class TrainSimulator {
         this.play;
         this.bindPlay = this.startGame.bind(this);
         this.bindDemo = this.demoMode.bind(this);
-        this.bindGridSwitch = this.world.switchGrid.bind(this);
+        this.bindGridSwitch;
         this.world = new TileManager();
         this.viewport = new Viewport(480, 480);
         this.viewport.init();
@@ -35,6 +35,7 @@ export default class TrainSimulator {
         this.world.init(this.viewport.canvas);
         this.world.setRenderContext(this.viewport.context);
         this.world.render();
+        this.bindGridSwitch = this.world.switchGrid.bind(this);
         this.runDemo();
     }
 
