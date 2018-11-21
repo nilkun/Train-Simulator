@@ -9,13 +9,14 @@ export default class TrainSimulator {
         this.updateInterval;
         this.play;
         this.bindPlay = this.startGame.bind(this);
+        this.bindDemo = this.demoMode.bind(this);
+        this.bindGridSwitch = this.world.switchGrid.bind(this);
         this.world = new TileManager();
         this.viewport = new Viewport(480, 480);
         this.viewport.init();
         this.world.init(this.viewport.canvas);
         this.world.setRenderContext(this.viewport.context);
         this.world.render();
-        this.updateInterval;
     }
     currentScriptPath() {
         // get scripts
@@ -34,37 +35,29 @@ export default class TrainSimulator {
         this.world.init(this.viewport.canvas);
         this.world.setRenderContext(this.viewport.context);
         this.world.render();
-        this.updateInterval;
-
         this.runDemo();
     }
 
     runDemo() {  
-        document.getElementById('train-btn5').addEventListener('click', () => this.world.switchGrid());
+        document.getElementById('train-btn5').addEventListener('click', this.bindGridSwitch);
         this.viewport.canvas.addEventListener('mousedown', this.bindPlay);        
         this.world.layTracks(3, 3);
         this.world.layTracks(26, 3);
         this.world.layTracks(26, 26);
         this.world.layTracks(3, 26);
         this.world.layTracks(3, 3);
-        console.log("current id: ",this.updateInterval);
-        this.updateInterval = setInterval(() => this.demoMode(), 1000/ 60);
-        console.log("running Demo: ", this.updateInterval);
+        this.updateInterval = setInterval(this.bindDemo, 1000/ 60);
+        // () => this.demoMode() but this is not the issue
     }
     
     startGame() {
-        console.log("STARTING GAME:", this);
-        console.log(this.updateInterval);
         clearInterval(this.updateInterval);
-
-        console.log(this.updateInterval);
         this.viewport.canvas.removeEventListener('mousedown', this.bindPlay);
 
         this.world.reset();
         this.world.setRenderContext(this.viewport.context);
         this.world.render();
         this.updateInterval = setInterval(() => this.update(), 1000/ 60);
-        console.log(this.updateInterval);
         this.viewport.canvas.addEventListener('mousedown', (e) => {
             const mousePos = this.viewport.getMouse(e);
             this.world.update();
@@ -86,5 +79,9 @@ export default class TrainSimulator {
 
     update() {
         this.world.update();
+    }
+
+    unload() {
+        clearInterval(this.updateInterval);
     }
 }
